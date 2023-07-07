@@ -1,7 +1,7 @@
 export default async function printStuff({github, context}) {
     console.log(github, context, "yo");
     const fullRepoName = context.payload.repository.full_name;
-    console.log("repository full name: ", repo); // Eg: 'phcode-dev/phoenix-desktop'
+    console.log("repository full name: ", fullRepoName); // Eg: 'phcode-dev/phoenix-desktop'
     const owner = fullRepoName.split("/")[0], repo = fullRepoName.split("/")[1];
     console.log("repository owner, repo: ", owner, repo); // Eg: 'phcode-dev/phoenix-desktop'
     const releaseTag = context.payload.release.tag_name;
