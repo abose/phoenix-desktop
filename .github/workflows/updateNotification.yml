@@ -1,0 +1,28 @@
+name: Create update-notification to all installed builds
+# https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#release
+on:
+  release:
+    types:
+      - edited
+      - published
+
+jobs:
+  build-tasks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump GitHub context
+        id: github_context_step
+        run: |
+          echo '${{ toJSON(github) }}'
+          echo "$GITHUB_REF repo=${{github.event.repository.full_name}}"
+
+      - name: Update docs folder with tauri update jsons
+        run: |
+          echo "Update docs folder with tauri update jsons"
+      - uses: actions/checkout@v3
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            const { default: printStuff }
+            = await import('${{ github.workspace }}/.github/workflows/updateNotification.js');
+            await printStuff({github, context});
