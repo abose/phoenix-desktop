@@ -37,7 +37,7 @@ jobs:
           commit-message: 'ci: tauri release update notification json'
           committer: GitHub <noreply@github.com>
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
-          title: '[Release BOT] Update release notification as part of new release'
+          title: '[Release BOT] Update release notification as part of new release ${{ context.payload.release.tag_name }}'
           add-paths: |
             docs/tauri/**
           body: |
