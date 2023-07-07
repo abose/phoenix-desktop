@@ -16,11 +16,9 @@ jobs:
           echo '${{ toJSON(github) }}'
           echo "$GITHUB_REF repo=${{github.event.repository.full_name}}"
 
-      - name: Update docs folder with tauri update jsons
-        run: |
-          echo "Update docs folder with tauri update jsons"
       - uses: actions/checkout@v3
       - uses: actions/github-script@v6
+        name: Update docs folder with tauri update jsons
         with:
           script: |
             const { default: printStuff }
