@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-export default async function printStuff({github, context}) {
+export default async function printStuff({github, context, githubWorkspaceRoot}) {
     console.log(github, context, "yo");
     const fullRepoName = context.payload.repository.full_name;
     console.log("repository full name: ", fullRepoName); // Eg: 'phcode-dev/phoenix-desktop'
@@ -23,6 +23,5 @@ export default async function printStuff({github, context}) {
     // you can call additional github apis using await github.rest.* apis
     // See https://octokit.github.io/rest.js/v19#repos-get-release-by-tag for more availableapis
 
-    const githubWorkspaceRoot = github.workspace;
     fs.writeFileSync(`${githubWorkspaceRoot}/docs/tauri/release.json`, JSON.stringify(releaseAssets, null, 2));
 }

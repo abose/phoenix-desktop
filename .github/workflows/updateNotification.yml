@@ -23,4 +23,4 @@ jobs:
           script: |
             const { default: printStuff }
             = await import('${{ github.workspace }}/.github/workflows/updateNotification.js');
-            await printStuff({github, context});
+            await printStuff({github, context, githubWorkspaceRoot: '${{ github.workspace }}'});
