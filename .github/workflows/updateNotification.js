@@ -1,4 +1,4 @@
-const fs = require('fs');
+import fs from 'fs';
 
 export default async function printStuff({github, context}) {
     console.log(github, context, "yo");
