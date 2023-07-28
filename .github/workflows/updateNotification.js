@@ -4,7 +4,28 @@ import {
     PRODUCT_NAME_SUFFIX_FOR_STAGE,
     UPDATE_NOTIFICATION_LATEST_JSON_FILE_PATH
 } from "../../src-build/constants.js";
-import {getTextHTTPS} from "../../src-build/utils.js";
+const https = require('https');
+
+export function _getTextHTTPS(url) {
+    return new Promise((resolve, reject)=>{
+        https.get(url, (resp) => {
+            let data = '';
+
+            // A chunk of data has been received.
+            resp.on('data', (chunk) => {
+                data += chunk;
+            });
+
+            // The whole response has been received.
+            resp.on('end', () => {
+                resolve(data);
+            });
+
+        }).on("error", (err) => {
+            reject(err);
+        });
+    });
+}
 
 function _makePrefix(name) {
     return name.trim().split(" ").join(".");
@@ -36,7 +57,7 @@ async function _getLatestJson(releaseAssets) {
             // "browser_download_url": "https://github.com/phoenix/phoenix-desktop/releases/download/34/latest.json"
             const downloadURL = releaseAsset.browser_download_url;
             console.log("Latest json download URL is: ", downloadURL);
-            const latestJSON = await getTextHTTPS(downloadURL);
+            const latestJSON = await _getTextHTTPS(downloadURL);
             console.log("Latest json file contents: ", latestJSON);
             return latestJSON;
         }
