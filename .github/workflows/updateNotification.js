@@ -10,7 +10,13 @@ export function _getTextHTTPS(url) {
     return new Promise((resolve, reject)=>{
         get(url, (resp) => {
             let data = '';
-
+            if(resp.statusCode === 302){
+                // http redirect, follow links
+                _getTextHTTPS(resp.headers.location)
+                    .then(resolve)
+                    .catch(reject);
+                return;
+            }
             // A chunk of data has been received.
             resp.on('data', (chunk) => {
                 data += chunk;
