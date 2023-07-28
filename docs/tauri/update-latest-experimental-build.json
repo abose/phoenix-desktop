@@ -1,0 +1,23 @@
+{
+    "version": "3.2.2",
+    "notes": "<replace this text to show a 1 line **Release Notes** to the user in the notification dialogue ![image](https://github.com/abose/phoenix-desktop/assets/5336369/c747898a-29ef-43c7-b74e-dddd5104a56c). Wait for a new pull request in the repo.>",
+    "pub_date": "2023-07-27T03:43:26.242Z",
+    "platforms": {
+        "linux-x86_64": {
+            "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVUVTVEdXJNVyttWnE0UnVmbEZOTjNDcGUwWXhqUDBITnBTbGRtWGIvOHBhSlBwdTF1YksxdUh3M0NPaTFaM3oyVENFZmZweWNDeVBMRFFmaEROVWdVT3IzWjh0VkZYRUFvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjkwNDI4Njg3CWZpbGU6cGgtY29kZV8zLjIuMl9hbWQ2NC5BcHBJbWFnZS50YXIuZ3oKMjZsYnJCR0dSV2RXUE5qZE1oTmFCcUNHSDdIQVpOeHYzcE14WW1lQjNza3g1c3NFQUlQeml4UkVXcmVGc3MwS3JCWUxiNi80U2dPSjZpOHdPYUhTQWc9PQo=",
+            "url": "https://github.com/phcode-dev/phoenix-desktop/releases/latest/download/ph-code_3.2.2_amd64.AppImage.tar.gz"
+        },
+        "darwin-x86_64": {
+            "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVUVTVEdXJNVyttWmdtSjNsa0hiTnhVV25qdzNTSmF2eGpMNXUvUUZ2RTZmV1RUNmxaS0xUWG9zY3piWDdIb0V0dU5KOW5DaEIzd2dLM3FucHZoS1cxTi9GTjZNUDBZUHdJPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjkwNDI4ODU5CWZpbGU6UGhDb2RlLmFwcC50YXIuZ3oKeXc2VkFnUjhSMzZ0RGlCVGd2TERPenhySncyM3k0UVN2TXh6TWVjMUhEWG9rUHZlN1VMa3NyMzBEKzMzdDdPWTJXSTA2eFgyK2RiSTlUSFBwU3NzQ2c9PQo=",
+            "url": "https://github.com/phcode-dev/phoenix-desktop/releases/latest/download/PhCode_x64.app.tar.gz"
+        },
+        "darwin-aarch64": {
+            "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVUVTVEdXJNVyttWnJBaUNWM085TE5GV21mcFFVWTlObFdmOXBtYjlCbGQ1cTgwb1dxWklPT0U3b2ZIZHBGY1BDaEEvZHpyd0UrcDJOc3BnWnp6dDRUZGVjb1cvZTh1b2cwPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjkwNDI5MzE5CWZpbGU6UGhDb2RlLmFwcC50YXIuZ3oKMGhZTUwrVUtIZGVhM0tvMlBoKzFEZnFEei91bFgrM3d1RkhqK1gxQ2ltRlVvdk8zaWYrYk9uYjd4dmFQRWQvQ29qd0M1cVU4V2l4L3ZYWE5yVnYrQUE9PQo=",
+            "url": "https://github.com/phcode-dev/phoenix-desktop/releases/latest/download/PhCode_aarch64.app.tar.gz"
+        },
+        "windows-x86_64": {
+            "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVUVTVEdXJNVyttWmlrRHlhL04zYWlsamIyeTNCU3VwWWFiZnRDdXdEb3VhUTdVd2RnS3IzaXdJOUgySFhxNG1BWGk1OXVra0ZzckEwaWVaTTE5eTlaWkN3MlJnS1VzVVFJPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjkwNDI5Mzk0CWZpbGU6UGhDb2RlXzMuMi4yX3g2NC1zZXR1cC5uc2lzLnppcApNQVpDcjZHditDZUhidS9DVFJBWFZiYkFsNmFRVGRQT1JUc00zZHhXUGZ0RUpoQ0FtbkFsT0Rjait6aGtsYUxhclR4K2c5QS80ZitSZzhaQTFPYllEUT09Cg==",
+            "url": "https://github.com/phcode-dev/phoenix-desktop/releases/latest/download/PhCode_3.2.2_x64-setup.nsis.zip"
+        }
+    }
+}
