@@ -71,6 +71,15 @@ async function _getLatestJson(releaseAssets) {
     throw new Error(`Could not locate ${LATEST_JSON_GITHUB_RELEASE} file in github releases.`);
 }
 
+function _extractSmallReleaseNotes(releaseNotes, releaseTitle) {
+    for(let line of releaseNotes.split("\n")){
+        if(line.startsWith(">UpdateNotification: ")){
+            return line.replace(">UpdateNotification: ", "");
+        }
+    }
+    return releaseTitle;
+}
+
 export default async function printStuff({github, context, githubWorkspaceRoot}) {
     console.log(github, context, "yo");
     const fullRepoName = context.payload.repository.full_name;
@@ -83,6 +92,8 @@ export default async function printStuff({github, context, githubWorkspaceRoot})
     console.log("Release isPreRelease: ", isPreRelease);
     const releaseNotes = context.payload.release.body;
     console.log("Release Notes: ", releaseNotes);
+    const releaseTitle = context.payload.release.name;
+    console.log("Release Title: ", releaseTitle);
     const releaseID = context.payload.release.id;
     const releaseAssets = (await github.rest.repos.listReleaseAssets({
         owner,
@@ -97,7 +108,7 @@ export default async function printStuff({github, context, githubWorkspaceRoot})
     // write to the docs folder here. all changes made here to the docs folder will be part of the pull request
     console.log("Updating tauri update JSON file: ", _identifyUpdateJSONPath(releaseAssets));
     const latestJSON = JSON.parse(await _getLatestJson(releaseAssets));
-    latestJSON.notes = releaseNotes;
+    latestJSON.notes = _extractSmallReleaseNotes(releaseNotes, releaseTitle);
     const latestJsonPath = `${githubWorkspaceRoot}/${_identifyUpdateJSONPath(releaseAssets)}`;
     console.log("writing latest json to path: ", latestJsonPath, " contents: ",  latestJSON)
     fs.writeFileSync(latestJsonPath, JSON.stringify(latestJSON, null, 4));
