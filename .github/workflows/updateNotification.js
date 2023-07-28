@@ -4,11 +4,11 @@ import {
     PRODUCT_NAME_SUFFIX_FOR_STAGE,
     UPDATE_NOTIFICATION_LATEST_JSON_FILE_PATH
 } from "../../src-build/constants.js";
-const https = require('https');
+import {get} from "https";
 
 export function _getTextHTTPS(url) {
     return new Promise((resolve, reject)=>{
-        https.get(url, (resp) => {
+        get(url, (resp) => {
             let data = '';
 
             // A chunk of data has been received.
