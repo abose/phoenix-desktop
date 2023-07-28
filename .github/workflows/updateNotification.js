@@ -96,6 +96,9 @@ export default async function printStuff({github, context, githubWorkspaceRoot})
 
     // write to the docs folder here. all changes made here to the docs folder will be part of the pull request
     console.log("Updating tauri update JSON file: ", _identifyUpdateJSONPath(releaseAssets));
-    console.log("Retrieving latest update json from url: ", )
-    fs.writeFileSync(`${githubWorkspaceRoot}/${_identifyUpdateJSONPath(releaseAssets)}`, await _getLatestJson(releaseAssets));
+    const latestJSON = JSON.parse(await _getLatestJson(releaseAssets));
+    latestJSON.notes = releaseNotes;
+    const latestJsonPath = `${githubWorkspaceRoot}/${_identifyUpdateJSONPath(releaseAssets)}`;
+    console.log("writing latest json to path: ", latestJsonPath, " contents: ",  latestJSON)
+    fs.writeFileSync(latestJsonPath, JSON.stringify(latestJSON, null, 4));
 }
