@@ -2,6 +2,7 @@ import * as fsExtra from "fs-extra";
 import {promises as fs} from 'fs';
 import * as path from "path";
 import * as os from "os";
+const https = require('https');
 
 /**
  * Asynchronously removes a specified directory if it exists.
@@ -89,4 +90,25 @@ export function getSideCarBinName(platform, arch) {
         return "node-x86_64-pc-windows-msvc.exe";
     }
    throw new Error(`unsupported ${platform} ${arch}`);
+}
+
+export function getTextHTTPS(url) {
+    return new Promise((resolve, reject)=>{
+        https.get(url, (resp) => {
+            let data = '';
+
+            // A chunk of data has been received.
+            resp.on('data', (chunk) => {
+                data += chunk;
+            });
+
+            // The whole response has been received.
+            resp.on('end', () => {
+                resolve(data);
+            });
+
+        }).on("error", (err) => {
+            reject(err);
+        });
+    });
 }

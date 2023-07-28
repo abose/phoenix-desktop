@@ -4,6 +4,7 @@ import {
     PRODUCT_NAME_SUFFIX_FOR_STAGE,
     UPDATE_NOTIFICATION_LATEST_JSON_FILE_PATH
 } from "../../src-build/constants.js";
+import {getTextHTTPS} from "../../src-build/utils.js";
 
 function _makePrefix(name) {
     return name.trim().split(" ").join(".");
@@ -35,8 +36,7 @@ async function _getLatestJson(releaseAssets) {
             // "browser_download_url": "https://github.com/phoenix/phoenix-desktop/releases/download/34/latest.json"
             const downloadURL = releaseAsset.browser_download_url;
             console.log("Latest json download URL is: ", downloadURL);
-            const response = await fetch(downloadURL);
-            const latestJSON = await response.text();
+            const latestJSON = await getTextHTTPS(downloadURL);
             console.log("Latest json file contents: ", latestJSON);
             return latestJSON;
         }
