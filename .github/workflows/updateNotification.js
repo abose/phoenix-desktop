@@ -1,5 +1,9 @@
 import fs from 'fs';
-import {PRODUCT_NAME_SUFFIX_FOR_STAGE, UPDATE_NOTIFICATION_LATEST_JSON_FILE_PATH} from "../../src-build/constants.js";
+import {
+    LATEST_JSON_GITHUB_RELEASE,
+    PRODUCT_NAME_SUFFIX_FOR_STAGE,
+    UPDATE_NOTIFICATION_LATEST_JSON_FILE_PATH
+} from "../../src-build/constants.js";
 
 function _makePrefix(name) {
     return name.trim().split(" ").join(".");
@@ -23,6 +27,21 @@ function _identifyUpdateJSONPath(releaseAssets) {
         }
     }
     return UPDATE_NOTIFICATION_LATEST_JSON_FILE_PATH.production;
+}
+
+async function _getLatestJson(releaseAssets) {
+    for(let releaseAsset of releaseAssets) {
+        if(releaseAsset.name === LATEST_JSON_GITHUB_RELEASE){
+            // "browser_download_url": "https://github.com/phoenix/phoenix-desktop/releases/download/34/latest.json"
+            const downloadURL = releaseAsset.browser_download_url;
+            console.log("Latest json download URL is: ", downloadURL);
+            const response = await fetch(downloadURL);
+            const latestJSON = await response.text();
+            console.log("Latest json file contents: ", latestJSON);
+            return latestJSON;
+        }
+    }
+    throw new Error(`Could not locate ${LATEST_JSON_GITHUB_RELEASE} file in github releases.`);
 }
 
 export default async function printStuff({github, context, githubWorkspaceRoot}) {
@@ -50,5 +69,6 @@ export default async function printStuff({github, context, githubWorkspaceRoot})
 
     // write to the docs folder here. all changes made here to the docs folder will be part of the pull request
     console.log("Updating tauri update JSON file: ", _identifyUpdateJSONPath(releaseAssets));
-    fs.writeFileSync(`${githubWorkspaceRoot}/${_identifyUpdateJSONPath(releaseAssets)}`, JSON.stringify(releaseAssets, null, 2));
+    console.log("Retrieving latest update json from url: ", )
+    fs.writeFileSync(`${githubWorkspaceRoot}/${_identifyUpdateJSONPath(releaseAssets)}`, await _getLatestJson(releaseAssets));
 }
